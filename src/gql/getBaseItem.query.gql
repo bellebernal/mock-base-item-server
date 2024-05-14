@@ -1,0 +1,19 @@
+query GetBaseItem($id: ID!) {
+	baseItem(id: $id) {
+		id
+		name
+		productTaxonomy
+		recordId
+		ingredients {
+			id
+			name
+			recordId
+		}
+		products {
+			id
+			name
+			imageUrl
+			recordId
+		}
+	}
+}

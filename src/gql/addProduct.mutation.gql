@@ -1,0 +1,19 @@
+mutation AddProduct(
+	$baseItemId: ID!
+	$id: ID!
+	$name: String!
+	$imageUrl: String!
+	$recordId: Int!
+) {
+	addProduct(
+		baseItemId: $baseItemId
+		id: $id
+		name: $name
+		imageUrl: $imageUrl
+		recordId: $recordId
+	) {
+		id
+		name
+		imageUrl
+	}
+}

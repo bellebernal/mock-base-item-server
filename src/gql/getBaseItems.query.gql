@@ -1,0 +1,29 @@
+query GetAllBaseItems {
+	baseItems {
+		id
+		name
+		productTaxonomy
+		recordId
+		ingredients {
+			id
+			name
+			recordId
+		}
+		products {
+			id
+			name
+			imageUrl
+			recordId
+		}
+	}
+}
+
+
+/*
+* Terminal Commands
+* execute this query against an Apollo-hosted server
+*/
+curl --request POST \
+  -H 'Content-Type: application/json' \
+  --data '{ "query":"query {baseItems {id name productTaxonomy}}" }' \
+  'http://localhost:3000/graphql'
