@@ -1,21 +1,13 @@
-query GetAllBaseItems {
-	baseItems {
-		id
-		name
-		productTaxonomy
-		recordId
-		ingredients {
-			id
-			name
-			recordId
-		}
-		products {
-			id
-			name
-			imageUrl
-			recordId
-		}
-	}
+query GetBaseItems {
+  getBaseItems {
+    id
+    name
+    productTaxonomy
+    isForRecipes
+    mappedRecipeCount
+    mappedProductCount
+    recordId
+  }
 }
 
 

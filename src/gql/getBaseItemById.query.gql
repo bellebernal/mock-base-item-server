@@ -1,5 +1,5 @@
-mutation AddBaseItem($input: AddBaseItemInput!) {
-	addBaseItem(input: $input) {
+query GetBaseItemById($id: ID!) {
+	getBaseItemById(id: $id) {
 		id
 		name
 		productTaxonomy

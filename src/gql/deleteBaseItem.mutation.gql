@@ -1,5 +1,3 @@
 mutation DeleteBaseItem($id: ID!) {
-	deleteBaseItem(id: $id) {
-		id
-	}
+	deleteBaseItem(id: $id)
 }

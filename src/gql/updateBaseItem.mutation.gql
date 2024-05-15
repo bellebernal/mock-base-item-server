@@ -1,21 +1,11 @@
-mutation UpdateBaseItem(
-	$id: ID!
-	$name: String
-	$productTaxonomy: String
-	$ingredients: [IngredientInput!]
-	$products: [ProductInput!]
-	$recordId: Int
-) {
-	updateBaseItem(
-		id: $id
-		name: $name
-		productTaxonomy: $productTaxonomy
-		ingredients: $ingredients
-		products: $products
-		recordId: $recordId
-	) {
+mutation UpdateBaseItem($input: UpdateBaseItemInput!) {
+	updateBaseItem(input: $input) {
 		id
 		name
 		productTaxonomy
+		isForRecipes
+		mappedRecipeCount
+		mappedProductCount
+		recordId
 	}
 }
