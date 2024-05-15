@@ -1,8 +1,8 @@
 import express, { Express } from 'express';
-import graphqlPlayground from 'graphql-playground-middleware-express';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
 
 
 const app: Express = express();
@@ -15,17 +15,14 @@ const server = new ApolloServer({
 
 async function startServer() {
   await server.start();
-  server.applyMiddleware({ app });
 
  // middleware
-  app.use('/graphiql', graphqlPlayground({
-    endpoint: '/graphql',
-  }));
+  app.use('/graphql', express.json(), expressMiddleware(server));
   
   // Start the server
   const PORT = 3000;
   app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/graphiql`);
+    console.log(`Server is running on http://localhost:${PORT}/graphql`);
   });
 }
 

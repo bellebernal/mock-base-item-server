@@ -1,95 +1,42 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'graphql-tag';
 
 export const typeDefs = gql`
   type BaseItem {
     id: ID!
     name: String!
     productTaxonomy: String!
-    ingredients: [Ingredient!]
-    products: [Product!]!
+    isForRecipes: Boolean!
+    mappedRecipeCount: Int!
+    mappedProductCount: Int!
     recordId: Int!
   }
 
-  type Ingredient {
-    id: ID!
+  input AddBaseItemInput {
     name: String!
-    recordId: Int!
+    productTaxonomy: String!
+    isForRecipes: Boolean!
+    mappedRecipeCount: Int!
+    mappedProductCount: Int!
   }
 
-  type Product {
+  input UpdateBaseItemInput {
     id: ID!
-    name: String!
-    imageUrl: String!
-    recordId: Int!
+    name: String
+    productTaxonomy: String
+    isForRecipes: Boolean
+    mappedRecipeCount: Int
+    mappedProductCount: Int
+    recordId: Int
   }
 
   type Query {
-    baseItems: [BaseItem!]!
-    baseItem(id: ID!): BaseItem
+    getBaseItems: [BaseItem!]!
+    getBaseItemById(id: ID!): BaseItem
   }
 
   type Mutation {
-    addBaseItem(
-        id: ID!
-        name: String!
-        productTaxonomy: String!
-        ingredients: [IngredientInput!]
-        products: [ProductInput!]!
-        recordId: Int!
-    ): BaseItem
-
-    updateBaseItem(
-        id: ID!
-        name: String!
-        productTaxonomy: String!
-        ingredients: [IngredientInput!]
-        products: [ProductInput!]!
-        recordId: Int!
-    ): BaseItem
-
-    deleteBaseItem(id: ID!): BaseItem
-
-    addProduct(
-        baseItemId: ID!
-        id: ID!
-        name: String!
-        imageUrl: String!
-        recordId: Int!
-    ): Product
-
-    updateProduct(
-        id: ID!
-        name: String
-        imageUrl: String
-        recordId: Int
-    ): Product
-
-    deleteProduct(id: ID!): Product
-
-    addIngredient(
-        baseItemId: ID!
-        id: ID!
-        name: String!
-        recordId: Int!
-      ): Ingredient
-  
-    updateIngredient(
-        id: ID!
-        name: String!
-        recordId: Int!
-      ): Ingredient
-  
-    deleteIngredient(id: ID!): Ingredient
-  }
-
-  input ProductInput {
-    name: String!
-    imageUrl: String!
-    recordId: Int!
-  }
-
-  input IngredientInput {
-    name: String!
-    recordId: Int!
+    addBaseItem(input: AddBaseItemInput!): BaseItem!
+    updateBaseItem(input: UpdateBaseItemInput!): BaseItem!
+    deleteBaseItem(id: ID!): Boolean!
   }
 `;
